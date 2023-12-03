@@ -1,0 +1,48 @@
+.containerFilters{
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.inputFilter{
+  padding: 10px;
+  padding-right: 35px;
+  border: 0;
+  outline: none;
+  font-size: 15px;
+  background: transparent;
+  outline: none;
+  border-bottom: 1px solid black;
+  width: 150px;
+}
+
+.selectFilter{
+  border: 0;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  border-bottom: 1px solid black;
+  font-size: 15px;
+}
+
+.buttonFilter{
+  position: relative;
+  padding: 10px 15px;
+  border-radius: 5px;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: .5s;
+ 
+}
+
+.buttonFilter:hover{
+  background-color: white;
+  color: red;
+  border: 1px solid  rgb(85, 0, 0);
+  font-weight: bold;
+}
+
+

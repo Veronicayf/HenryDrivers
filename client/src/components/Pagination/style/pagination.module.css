@@ -1,0 +1,30 @@
+.containerPag{
+  margin: 30px;
+  display: flex;
+  gap: 20px;
+
+}
+
+.pageNumber{
+  font-size: 20px;
+
+}
+
+.buttonPag{
+  position: relative;
+  border-radius: 5px;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: .5s;
+  font-size:15px;
+
+}
+
+.buttonPag:hover{
+  background-color: white;
+  color: red;
+  border: 1px solid  rgb(85, 0, 0);
+  font-weight: bold;
+}

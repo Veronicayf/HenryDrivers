@@ -1,0 +1,14 @@
+export const URL_API = "http://localhost:3001";
+export const GET_DRIVERS = "GET_DRIVERS";
+export const GET_ID = "GET_ID";
+export const GET_TEAMS = "GET_TEAMS";
+export const POST_DRIVER = "POST_DRIVER";
+export const RESET_DETAIL = "RESET_DETAIL";
+export const SORT_BY_AGE = "SORT_BY_AGE";
+export const SORT_BY_SURNAME = "SORT_BY_SURNAME";
+export const FILTER_BY_DATA = "FILTER_BY_STORAGE";
+export const FILTER_BY_TEAMS = "FILTER_BY_TEAMS";
+export const SEARCH_NAME = "SEARCH_NAME";
+export const SEARCH_TEAM = "SEARCH_TEAM";
+export const SET_PAGE = "SET_PAGE";
+export const RESET_AUX = "RESET_AUX";
