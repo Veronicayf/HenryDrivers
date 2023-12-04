@@ -1,10 +1,9 @@
-// import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getId, resetDetail } from "../../redux/actions/actions";
 import { useParams } from "react-router-dom";
+import style from "./style/detail.module.css";
 
-import styles from "./Detail.module.css";
 const Detail = () => {
   const driver = useSelector((state) => state.detail);
   const { id } = useParams();
@@ -25,15 +24,16 @@ const Detail = () => {
   }
  
   return (
-    <div className={styles.containerDetail}>
-      <div className={`${styles.contentDetail} container`}>
-        <div className={styles.imageContainer}>
-          <img src={driver.image} alt="" className={styles.image} />
-        </div>
-        <div className={styles.infoContainer}>
-          <h3>Name: {driver.forename}</h3>
-          <h3>Last name: {driver.surname}</h3>
-          <div className={styles.texts}>
+    <div className={style.detailContainer}>
+        
+        <div className={style.detail}>
+
+          <div>
+            <img src={driver.image} alt="" className={style.image} />
+          </div>
+
+          <div className={style.detailText}>
+            <h2>{driver.forename} {driver.surname}</h2>
             <h3>Id: {driver.id}</h3>
             <h3>Nationality: {driver.nationality}</h3>
             <h3>Birthday: {driver.birthday}</h3>
@@ -46,12 +46,17 @@ const Detail = () => {
                 : "No teams"}
             </h3>
           </div>
+
         </div>
-        <h3>
-          Description:{" "}
-          {driver.description ? driver.description : "No description"}
-        </h3>
-      </div>
+
+        <div className={style.detailDescription}>
+          <h3>Description:{" "}</h3>
+          <p>
+            {/* Description:{" "} */}
+            {driver.description ? driver.description : "No description"}
+          </p>
+        </div>
+
     </div>
   );
 };

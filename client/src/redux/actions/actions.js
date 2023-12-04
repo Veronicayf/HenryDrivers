@@ -4,7 +4,7 @@ import {
   GET_DRIVERS,
   GET_ID,
   GET_TEAMS,
-  // POST_DRIVER,
+  POST_DRIVER,
   RESET_DETAIL,
   SORT_BY_AGE,
   SORT_BY_SURNAME,
@@ -58,41 +58,11 @@ export const postDriver = async (newDriver) => {
   try {
     await axios.post(`${URL_API}/drivers`, newDriver);
     window.alert("Driver created");
-    await getDrivers();
     return true;
   } catch (error) {
     window.alert(error?.response?.data?.error);
   }
 };
-
-// export const postDriver = (newDriver) => {
-//   return async (dispatch) => {
-//     try {
-//       await axios.post(`${URL_API}/drivers`, newDriver);
-//       window.alert("Driver created");
-//       dispatch(getDrivers()); 
-//       dispatch({ type: POST_DRIVER, payload: newDriver });
-//       return true;
-//     } catch (error) {
-//       window.alert(error?.response?.data?.error);
-//     }
-//   };
-// };
-
-// export const postDriver = (newDriver) => {
-//   return async (dispatch) => {
-//     try {
-//       await axios.post(`${URL_API}/drivers`, newDriver);
-//       window.alert("Driver created");
-//       dispatch(getDrivers());
-//       dispatch({ type: POST_DRIVER, payload: newDriver });
-//       return true;
-//     } catch (error) {
-//       console.error("Error creating driver:", error);
-//       window.alert(error?.response?.data?.error);
-//     }
-//   };
-// };
 
 export const resetDetail = () => {
   return { type: RESET_DETAIL, payload: [] };

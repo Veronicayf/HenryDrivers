@@ -12,6 +12,9 @@
   font-size: 15px;
 }
 
+
+
+
 .botonSeach{
   background-color: black;
   position: absolute;
@@ -25,6 +28,7 @@
   cursor: pointer;
   font-size: 15px;
   transition: .5s;
+  padding: 0 5px;
 }
 
 .botonSeach:hover{

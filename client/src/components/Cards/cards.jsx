@@ -11,9 +11,8 @@ function Cards() {
   const dispatch = useDispatch();
 
   const { allDrivers, filteredByData, aux, page } = useSelector(
-    (state) => state
-  );
-  console.log(allDrivers, 'soy all drivers')
+    (state) => state);
+
   const selectDrivers =
     aux.length > 0
       ? aux
@@ -23,7 +22,6 @@ function Cards() {
   const startIndex = (page - 1) * perPage;
   const endIndex = perPage * page;
   const showDrivers = selectDrivers.slice(startIndex, endIndex); 
-  console.log('soy el show drivers', showDrivers)
   const totalPages = Math.ceil(selectDrivers.length / perPage);
 
   const handleNext = () => {

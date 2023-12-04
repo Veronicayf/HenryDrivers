@@ -24,11 +24,6 @@ const Form = () => {
     teams: [],
   });
 
-  // const handleValidation = () => {
-  //   const errors = validations(form);
-  //   setFormError(errors);
-  // };
-
   const handleFormData = (event) => {
     const { name, value } = event.target;
     setForm({ ...form, [name]: value });
@@ -66,16 +61,18 @@ const Form = () => {
       birthday: form.birthday,
       teamName: teamsOk,
     };
-    await postDriver(newDriver);
-    if (newDriver === true) {
-      navigate("/home");
+    try {
+      const success = await postDriver(newDriver)
+      if(success){
+        navigate('/home')
+      }
+    } catch (error) {
+      console.error('Error creating driver: ', error)
     }
-    console.log(newDriver, 'soy new drivers')
   };
 
   const disableButton = () => {
     let aux = true;
-
     if (Object.keys(formError).length === 0) {aux = false}
     return aux;
   };
@@ -88,10 +85,6 @@ const Form = () => {
     const teamsTransform = selectedTeams.map((teamId) => parseInt(teamId));
     setForm((prevForm) => ({ ...prevForm, teams: teamsTransform }));
   }, [selectedTeams]);
-
-  // useEffect(() => {
-  //   handleValidation();
-  // }, [handleValidation]);
 
   useEffect(() => {
     const handleValidation = () => {
@@ -110,78 +103,83 @@ const Form = () => {
 
       <form className={style.form} onSubmit={handleSubmit}>
 
+        <div className={style.formContain}>
 
-  <div>
+          <div>
 
-        <div className={style.inputName}>
-          <input type="text" name="name" onChange={handleFormData}/>
-          {formError.name ? (<p className={style.error}>{formError.name}</p>) : (<p></p>)}
-          <label>Name:</label>
+                <div className={style.inputName}>
+                  <input type="text" name="name" onChange={handleFormData}/>
+                  {formError.name ? (<p className={style.error}>{formError.name}</p>) : (<p></p>)}
+                  <label>Name:</label>
+                </div>
+
+                <div className={style.inputName}>
+                  <input type="text" name="lastName" value={form.lastName} onChange={handleFormData}/>
+                  {formError.lastName ? (<p className={style.error}>{formError.lastName}</p>) : (<p></p>)}
+                  <label>Last name:</label>
+                </div>
+
+                <div className={style.inputName}>
+                  <input type="text" name="nationality" value={form.nationality} onChange={handleFormData}/>
+                  {formError.nationality ? (<p className={style.error}>{formError.nationality}</p>) : (<p></p>)}
+                  <label>Nationality:</label>
+                </div>
+
+                <div className={style.inputName}>
+                  <input type="date" name="birthday" value={form.birthday} onChange={handleFormData}/>
+                  {formError.birthday ? (<p className={style.error}>{formError.birthday}</p>) : (<p></p>)}
+                  <label>Date of Birth:</label>
+                </div>
+          </div>
+          <div>
+
+                <div  className={style.inputName}>
+                  <input type="text" name="image" value={form.image} onChange={handleFormData}/>
+                  {formError.image ? (<p className={style.error}>{formError.image}</p>) : (<p></p>)}
+                  <label>Image:</label>
+                </div>
+
+                <div  className={style.inputName}>
+                  <input type="text" name="description" value={form.description} onChange={handleFormData}/>
+                  <label>Description:</label>
+                </div>
+
+                <div className={style.selecrtAll}>
+                  {/* <label className={style.selectText}>Equipos:</label> */}
+                  <select className={style.select} name="teams" id="" onChange={handleTeamsChange} value="">
+                    <option value="" disabled>Select a team{" "}</option>
+                    {sortedTeams.map((team) => (
+                    <option key={team.id} value={team.id}>
+                      {team.teamName}
+                    </option>
+                    ))}
+                  </select>
+                
+                
+                  {selectedTeams.map((teamId) => {
+                    const team = teams.find((elem) => elem.id == teamId.id);
+                    return (
+                      <div key={teamId} className={style.formCheckBox}>
+                        <button type="button" className={style.buttonForm} onClick={() => handleRemoveTeam(teamId)}>
+                            X
+                        </button>
+                        <span className={style.teams}>{team?.teamName}</span>
+                      </div>
+                      );
+                    })}
+                  {formError.teams && <p className={style.error}>{formError.teams}</p>}
+                </div>
+          </div>
         </div>
-
-        <div className={style.inputName}>
-          <input type="text" name="lastName" value={form.lastName} onChange={handleFormData}/>
-          {formError.lastName ? (<p className={style.error}>{formError.lastName}</p>) : (<p></p>)}
-          <label>Last name:</label>
-        </div>
-
-        <div className={style.inputName}>
-          <input type="text" name="nationality" value={form.nationality} onChange={handleFormData}/>
-          {formError.nationality ? (<p className={style.error}>{formError.nationality}</p>) : (<p></p>)}
-          <label>Nationality:</label>
-        </div>
-
-        <div className={style.inputName}>
-          <input type="date" name="birthday" value={form.birthday} onChange={handleFormData}/>
-          {formError.birthday ? (<p className={style.error}>{formError.birthday}</p>) : (<p></p>)}
-          <label>Date of Birth:</label>
-        </div>
-  </div>
-  <div>
-
-        <div  className={style.inputName}>
-          <input type="text" name="image" value={form.image} onChange={handleFormData}/>
-          {formError.image ? (<p className={style.error}>{formError.image}</p>) : (<p></p>)}
-          <label>Image:</label>
-        </div>
-
-        <div  className={style.inputName}>
-          <input type="text" name="description" value={form.description} onChange={handleFormData}/>
-          <label>Description:</label>
-        </div>
-
-        <div className={style.selecrtAll}>
-          <label className={style.selectText}>Equipos:</label>
-          <select className={style.select} name="teams" id="" onChange={handleTeamsChange} value="">
-            <option value="" disabled>Select a team{" "}</option>
-            {sortedTeams.map((team) => (
-            <option key={team.id} value={team.id}>
-              {team.teamName}
-            </option>
-            ))}
-          </select>
-        
-        
-          {selectedTeams.map((teamId) => {
-            const team = teams.find((elem) => elem.id == teamId.id);
-            return (
-              <div key={teamId} className={style.formCheckBox}>
-                <button type="button" className={style.buttonForm} onClick={() => handleRemoveTeam(teamId)}>
-                    X
-                </button>
-                <span className={style.teams}>{team?.teamName}</span>
-              </div>
-              );
-            })}
-          {formError.teams && <p className={style.error}>{formError.teams}</p>}
-        </div>
-  </div>
-
+        <div>
           {Object.values(formError).length === 0 && (
           <button className={style.buttonSubmit} disabled={disableButton()} type="submit">
-            Create Driver{" "}
+            Create Driver{" "} 
           </button>
         )}
+
+        </div>
+
 
       </form>
     </div>

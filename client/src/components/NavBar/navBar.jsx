@@ -12,6 +12,9 @@ const NavBar = () => {
           <img src={logo} className={style.logo} alt="Logo" />
         </div>
         <div className={style.centeredLinks}>
+          <Link to="/" className={style.link}>
+            START
+          </Link>
           <Link to="/home" className={style.link}>
             HOME
           </Link>
