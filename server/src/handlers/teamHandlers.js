@@ -14,7 +14,7 @@ const getTeamsHandler = async (req,res)=>{
     res.status(200).json(allTeams)
     }
     } catch (error) {
-    res.status(500).json({error:error.message})//agregar error descriptivo
+    res.status(500).json({error:error.message})
     }
 }
 

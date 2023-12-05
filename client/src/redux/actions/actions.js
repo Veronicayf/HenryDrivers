@@ -9,7 +9,7 @@ import {
   SORT_BY_AGE,
   SORT_BY_SURNAME,
   FILTER_BY_DATA,
-  FILTER_BY_TEAMS,
+  FILTER_BY_TEAM,
   SEARCH_NAME,
   SEARCH_TEAM,
   SET_PAGE,
@@ -82,9 +82,10 @@ export const filterByData = (filter) => {
   return { type: FILTER_BY_DATA, payload: filter };
 };
 
-export const filterByTeams = (team) => {
-  return { type: FILTER_BY_TEAMS, payload: team };
+export const filterByTeam = (team) => {
+  return { type: FILTER_BY_TEAM, payload: team };
 };
+
 export const searchTeam = (teamName) => {
   return async (dispatch) => {
     try {

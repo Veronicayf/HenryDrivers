@@ -18,7 +18,7 @@ if(!birthday){
       forename: { [Op.iLike]: `%${toLowForname}%` },
       surname: { [Op.iLike]: `%${toLowSurname}%` },
       nationality: { [Op.iLike]: `%${toLowNationality}%` },
-      birthday: { [Op.iLike]: `%${toLowDob}%` }, //antes estaba dob
+      birthday: { [Op.iLike]: `%${toLowDob}%` }, 
     },
   });
 

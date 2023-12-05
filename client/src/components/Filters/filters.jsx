@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {
   getDrivers,
   getTeams,
-  filterByTeams,
+  filterByTeam,
   filterByData,
   sortBySurname,
   sortByAge,
@@ -27,7 +27,8 @@ const Filters = () => {
   const handleTeamsFilter = (event) => {
     const team = event.target.value;
     dispatch(setPage(1));
-    dispatch(filterByTeams(team));
+    dispatch(filterByTeam(team));
+  
   };
 
   const handleOrderBy = (event) => {
@@ -57,7 +58,7 @@ const Filters = () => {
     document.getElementById("orderDOBFIlter").selectedIndex = 0;
     document.getElementById("dataRouteFilter").selectedIndex = 0;
     dispatch(filterByData([]));
-    dispatch(filterByTeams([]));
+    dispatch(filterByTeam([]));
   };
 
   // Filtrar la lista de equipos según el valor de teamSearch
@@ -67,9 +68,7 @@ const Filters = () => {
 
   return (
     <div>
-      <div className={style.containerFilters}
-      // className={`${style.containerFilters} container`}
-      >
+      <div className={style.containerFilters}>
         <input
           type="text"
           placeholder="Filter Teams"
@@ -84,16 +83,16 @@ const Filters = () => {
           id="teamsFilter"
           defaultValue={"default"}
           onChange={handleTeamsFilter}
-          className={style.selectFilter}
-        >
+          className={style.selectFilter}>
           <option value="default">Teams</option>
-          {filteredTeams?.map((team) => (
-            <option key={team.id} value={team.teamName}>
+          {filteredTeams?.map((team) => {
+            return(
+              <option key={team.id} value={team.teamName}>
               {team.teamName}
             </option>
-          ))}
+          )})}
         </select>
-
+        
         <select
           id="orderByFilter"
           defaultValue={"default"}

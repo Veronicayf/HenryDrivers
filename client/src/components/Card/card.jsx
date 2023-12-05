@@ -15,24 +15,18 @@ const Card = (props) => {
         </div>
 
         <div className={style.det}>
-          <h3>
-            <p>
-                {`${props.forename} ${props.surname}`} 
-            </p>
-          </h3>
-          <p>
-            Birthday: {props.birthday}
-          </p>
-          <p>
-            Teams: {props.teams}
-          </p>
+          <h3>{`${props.forename} ${props.surname}`}</h3>
+          <p>Birthday: {props.birthday}</p>
+          <p>Teams: {props.teams? props.teams : props.teamName}</p>
         </div>
+
         <div className={style.imageCont}>
           <img
             src={props.image?.url ? props.image?.url : props.image}
             alt={`driver image ${props.forename} ${props.surname}`}
           />
         </div>
+        
       </div>
     </Link>
   );

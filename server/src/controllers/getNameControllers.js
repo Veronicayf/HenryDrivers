@@ -18,8 +18,8 @@ const getNameControllers = async (name) => {
         description: driver.description,
         image: driver.image,
         nationality: driver.nationality,
-        birthday: driver.dob, //birthday: driver.dob
-        teamName: driver.teams //se agrego team 
+        birthday: driver.dob, 
+        teamName: driver.teams 
     }))
 
     const filteredDB = await Driver.findAll({

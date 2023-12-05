@@ -27,12 +27,12 @@ const getIdController = async (id) => {
   } else {
 
     const driverDB = await Driver.findOne({
-      where: { id: id },//trae driver de base datos    
+      where: { id: id },  
     });
 
     if (driverDB) {
       const driverTeams = await driver_team.findAll({
-        where: { DriverId: driverDB.id }//trae uuid de tabla relacional driver
+        where: { DriverId: driverDB.id }
       })
 
       const teamIds = driverTeams.map((team) => team.TeamId);

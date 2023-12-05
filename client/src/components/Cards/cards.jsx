@@ -5,7 +5,7 @@ import Card from "../Card/card";
 import Pagination from "../Pagination/pagination";
 import style from "./style/cards.module.css";
 
-function Cards() {
+const Cards = () => {
 
   const [perPage, setPerPage] = useState(9);
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ function Cards() {
   const showDrivers = selectDrivers.slice(startIndex, endIndex); 
   const totalPages = Math.ceil(selectDrivers.length / perPage);
 
-  const handleNext = () => {
+   const handleNext = () => {
     if (page !== totalPages) {
       dispatch(setPage(page + 1));
     }
@@ -35,11 +35,11 @@ function Cards() {
       dispatch(setPage(page - 1));
     }
   };
-
   
   useEffect(() => {
     dispatch(getDrivers());
   }, []);
+
   return (
     <div className={style.container}>
 

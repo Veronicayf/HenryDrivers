@@ -1,7 +1,9 @@
 const {Router} = require ('express');
 const {getDriverHandler,
     getDetailHandler,
-    postDriverHandler
+    postDriverHandler,
+    deleteDriverHandler,
+    handleUpdateDriver
 } = require('../handlers/driverHandlers')
 
 const driverRouters = Router()
@@ -9,5 +11,8 @@ const driverRouters = Router()
 driverRouters.get('/',getDriverHandler)
 driverRouters.get('/:id',getDetailHandler)
 driverRouters.post('/',postDriverHandler)
+driverRouters.put('/:id', handleUpdateDriver)
+driverRouters.delete('/:id', deleteDriverHandler)
+
 
 module.exports = driverRouters

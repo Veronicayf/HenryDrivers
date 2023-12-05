@@ -6,7 +6,7 @@ import { GET_DRIVERS,
   SORT_BY_AGE,
   SORT_BY_SURNAME,
   FILTER_BY_DATA,
-  FILTER_BY_TEAMS,
+  FILTER_BY_TEAM,
   SEARCH_NAME, 
   SET_PAGE,
   RESET_AUX,} from "./actions/actionsTypes";
@@ -18,6 +18,7 @@ const initialState = {
   detail: [],
   aux: [],
   page: 1,
+  filteredByTeam: [],
 };
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -79,7 +80,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
         } else if (payload === "desc") {
           return surnameB.localeCompare(surnameA);
         }
-
         return 0;
       });
 
@@ -95,7 +95,9 @@ const rootReducer = (state = initialState, { type, payload }) => {
         if (state.copy.length === 0) {
           filteredData = state.allDrivers.filter(
             (driver) => typeof driver.id !== "number"
+        
           );
+          console.log(state.allDrivers, 'soy dataaaa'); //comentariooooo
         } else {
           filteredData = state.copy.filter(
             (driver) => typeof driver.id !== "number"
@@ -130,42 +132,44 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return { ...state, filteredByData: filteredData };
 }
 
-    case FILTER_BY_TEAMS:
-      if (state.aux.length === 0 && state.filteredByData.length === 0) {
+    case FILTER_BY_TEAM:
+      console.log(state.aux.length, state.filteredByData.length );
+      if (state.aux.length === 0 && state.filteredByData.length === 0) { 
         const filterTeam = state.allDrivers.filter((driver) => {
-          if (driver.teams) {
-            return driver.teams?.includes(payload);
+
+          if (driver.teamName) {
+            return driver.teamName?.includes(payload);
           } else if (driver.Teams) {
-            return driver?.Teams?.map((team) => team.teamName)
-              .join(", ")
-              .includes(payload);
+            return driver?.Teams?.map((team) => team.teamName).join(", ").includes(payload);
           }
         });
+
         state.copy = filterTeam;
         return { ...state, aux: filterTeam };
+
       } else if (state.filteredByData.length === 0) {
-        const filterTeam = state.aux.filter((driver) => {
-          if (driver.teams) {
-            return driver.teams?.includes(payload);
+        console.log('1234funciona')
+        console.log(payload);
+        const filterTeam = state.allDrivers.filter((driver) => { // const filterTeam = state.aux.filter((driver) => { 
+          if (driver.teamName) {
+            return driver.teamName?.includes(payload);
           } else if (driver.Teams) {
-            return driver?.Teams?.map((team) => team.teamName)
-              .join(", ")
-              .includes(payload);
+            return driver?.Teams?.map((team) => team.teamName).join(", ").includes(payload);
           }
         });
+
         if (filterTeam.length === 0) {
           return state;
         }
         state.copy = filterTeam;
         return { ...state, aux: filterTeam };
-      } else {
+      }else {
+
         const filterTeam = state.filteredByData.filter((driver) => {
-          if (driver.teams) {
-            return driver.teams?.includes(payload);
+          if (driver.teamName) {
+            return driver.teamName?.includes(payload);
           } else if (driver.Teams) {
-            return driver?.Teams?.map((team) => team.teamName)
-              .join(", ")
-              .includes(payload);
+            return driver?.Teams?.map((team) => team.teamName).join(", ").includes(payload);
           }
         });
         if (filterTeam.length === 0) {

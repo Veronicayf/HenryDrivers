@@ -1,10 +1,10 @@
 import Cards from "../../components/Cards/cards";
 import Filters from "../../components/Filters/filters";
-import styles from "./home.module.css";
+import style from "./style/home.module.css";
 
 const Home = () => {
   return (
-    <div className={styles.homeBackground}>
+    <div className={style.homeBackground}>
       <Filters />
       <Cards />
     </div>

@@ -52,7 +52,6 @@ const Detail = () => {
         <div className={style.detailDescription}>
           <h3>Description:{" "}</h3>
           <p>
-            {/* Description:{" "} */}
             {driver.description ? driver.description : "No description"}
           </p>
         </div>
