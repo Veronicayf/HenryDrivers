@@ -1,5 +1,5 @@
 .navCont {
-  background: red;
+  background: black;
   cursor: auto;
 }
 
@@ -22,7 +22,11 @@
 
 .link:hover {
   transition: 80ms;
-  color: black;
+  color: red;
+}
+
+.link:focus {
+  color: red;
 }
 
 .logoContainer {

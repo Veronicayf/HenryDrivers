@@ -5,7 +5,6 @@ const getTeamsHandler = async (req,res)=>{
 
     try {
     const {name} = req.query
-    console.log(name, 'soy el name')
     if(name){
         const equipofiltrado = await getNameTeamController(name)
         res.status(200).json(equipofiltrado)

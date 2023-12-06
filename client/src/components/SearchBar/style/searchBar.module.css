@@ -12,11 +12,8 @@
   font-size: 15px;
 }
 
-
-
-
 .botonSeach{
-  background-color: black;
+  background-color: red;
   position: absolute;
   border: 0;
   top: 0;
@@ -35,5 +32,6 @@
   background-color:white;
   color: red;
   font-weight: bold;
+
 }
 

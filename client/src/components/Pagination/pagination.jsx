@@ -1,17 +1,20 @@
 import style from './style/pagination.module.css';
 
-function Pagination({handleNext, handlePrev, totalPages, page} ) {
+const Pagination = ({handleNext, handlePrev, totalPages, page} ) => {
   return (
+
     <div className={style.containerPag}>
+
       {page > 1 && (
-        <button className={style.buttonPag} onClick={handlePrev}> Previous</button>
-      )}
-      <span className={style.pageNumber}>Page {page} of {totalPages}</span>
+        <button className={style.buttonPag} onClick={handlePrev}> ⇚ Prev </button>)
+      }
+
+      <p className={style.pageNumber}>Page {page} of {totalPages}</p>
+
       {page !== totalPages && (
-        <button className={style.buttonPag} onClick={handleNext}>
-          Next
-        </button>
-      )}
+        <button className={style.buttonPag} onClick={handleNext}>Next ⇛ </button>)
+      }
+
     </div>
   );
 }

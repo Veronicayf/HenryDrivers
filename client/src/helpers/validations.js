@@ -1,3 +1,4 @@
+
 const validations = (form) => {
   const errors = {};
   if (form.name.trim().length === 0) {
@@ -32,8 +33,7 @@ const validations = (form) => {
   }
   if (form.birthday === "") {
     errors.birthday = "A date of birth is required";
-  }
-
+  } 
   if (form.teams.length === 0) {
     errors.teams = "At least one team is required";
   }

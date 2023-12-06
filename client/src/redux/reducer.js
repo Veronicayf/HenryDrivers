@@ -97,7 +97,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
             (driver) => typeof driver.id !== "number"
         
           );
-          console.log(state.allDrivers, 'soy dataaaa'); //comentariooooo
         } else {
           filteredData = state.copy.filter(
             (driver) => typeof driver.id !== "number"
@@ -116,7 +115,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
           filteredData = state.copy.filter(
             (driver) => typeof driver.id === "number"
           );
-          console.log("filtro" + filteredData);
           if (filteredData.length === 0) {
             return state;
           } else return { ...state, aux: filteredData };
@@ -132,11 +130,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return { ...state, filteredByData: filteredData };
 }
 
+
     case FILTER_BY_TEAM:
-      console.log(state.aux.length, state.filteredByData.length );
+
       if (state.aux.length === 0 && state.filteredByData.length === 0) { 
         const filterTeam = state.allDrivers.filter((driver) => {
-
           if (driver.teamName) {
             return driver.teamName?.includes(payload);
           } else if (driver.Teams) {
@@ -148,9 +146,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         return { ...state, aux: filterTeam };
 
       } else if (state.filteredByData.length === 0) {
-        console.log('1234funciona')
-        console.log(payload);
-        const filterTeam = state.allDrivers.filter((driver) => { // const filterTeam = state.aux.filter((driver) => { 
+        const filterTeam = state.allDrivers.filter((driver) => { 
           if (driver.teamName) {
             return driver.teamName?.includes(payload);
           } else if (driver.Teams) {
@@ -177,6 +173,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         }
         state.copy = filterTeam;
         return { ...state, aux: filterTeam };
+        
       }
 
     case SEARCH_NAME:

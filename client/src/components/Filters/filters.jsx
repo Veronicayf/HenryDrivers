@@ -36,7 +36,7 @@ const Filters = () => {
     dispatch(sortBySurname(value));
   };
 
-  const handleOrderDOB = (event) => {
+    const handleOrderDOB = (event) => {
     const { value } = event.target;
     dispatch(sortByAge(value));
   };
@@ -61,7 +61,6 @@ const Filters = () => {
     dispatch(filterByTeam([]));
   };
 
-  // Filtrar la lista de equipos según el valor de teamSearch
   const filteredTeams = sortedTeams.filter((team) =>
     team.teamName.toLowerCase().includes(teamSearch.toLowerCase())
   );
@@ -78,6 +77,7 @@ const Filters = () => {
           }}
           className={style.inputFilter}
         />
+
 
         <select
           id="teamsFilter"

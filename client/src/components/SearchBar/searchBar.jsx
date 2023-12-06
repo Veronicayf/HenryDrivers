@@ -36,7 +36,6 @@ const SearchBar = () => {
       />
       <button
         onClick={handleSearch}
-        // className={`${style.btnSearch} btn btnPrimary`}
         className={style.botonSeach}
       >
         Search
